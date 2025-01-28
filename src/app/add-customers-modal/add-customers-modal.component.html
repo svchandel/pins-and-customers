@@ -8,21 +8,33 @@
         <div class="modal-body" style="margin: auto;">
           <div class="add-customer-ctn">
             <div class="input-group mb-3" style="align-items: center;">
-                <span class="input-label" >Title*: </span>
-                <input type="text" class="form-control" aria-label="title" aria-describedby="basic-addon1">
+                <span class="input-label" >Name*: </span>
+                <input type="text" class="form-control" aria-label="title" [(ngModel)]="customerDetails.name" >
             </div>
             <div class="input-group mb-3" style="align-items: center;">
                 <span class="input-label" >Email*: </span>
-                <input type="text" class="form-control" aria-label="title" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" aria-label="title" [(ngModel)]="customerDetails.email">
             </div>
             <div class="input-group mb-3 single-select" style="align-items: center;">
-                <span class="input-label" >Region*: </span>
-                <ngx-select [items]="regions" [(ngModel)]="selectedRegion" style="width: 500px;border: 1px solid #c4c4c4;border-radius: 0;"></ngx-select>
+                <span class="input-label">Region*: </span>
+                <ngx-select 
+                  [items]="regions" 
+                  [(ngModel)]="customerDetails.region" 
+                  (ngModelChange)="onRegionChange(customerDetails.region)"
+                  style="width: 500px; border: 1px solid #c4c4c4; border-radius: 0;">
+                </ngx-select>
             </div>
+              
             <div class="input-group mb-3 single-select" style="align-items: center;">
-                <span class="input-label" >Country*: </span>
-                <ngx-select [items]="regions" [(ngModel)]="selectedCountry" style="width: 500px;border: 1px solid #c4c4c4;border-radius: 0;"></ngx-select>
+                <span class="input-label">Country*: </span>
+                <ngx-select 
+                  [items]="getCountriesForSelectedRegion()" 
+                  [(ngModel)]="customerDetails.country" 
+                  style="width: 500px; border: 1px solid #c4c4c4; border-radius: 0;"
+                  [disabled]="!customerDetails.region">
+                </ngx-select>
             </div>
+              
           </div>
         </div>
         <div class="modal-footer" style="justify-content: center;">
