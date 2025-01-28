@@ -32,7 +32,7 @@ export class AddPinsModalComponent implements OnInit {
   @Input() modalId!: string ; // Unique ID for the modal
   @Output() pinData = new EventEmitter<pin>(); 
 
-  uploader: FileUploader; // Declare uploader of type FileUploader
+  uploader: FileUploader; //Uploader Declaration
   hasBaseDropZoneOver: boolean = false;
   imageUploaded: boolean = false;
 
@@ -46,7 +46,7 @@ export class AddPinsModalComponent implements OnInit {
       maxFileSize: 5 * 1024 * 1024
      
     });
-    // Add event listener for file addition
+    // event listener for file addition
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false; 
       this.convertToBase64(file._file); 
