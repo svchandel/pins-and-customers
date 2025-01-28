@@ -81,7 +81,6 @@ export class AddCustomersModalComponent implements OnInit {
   }
 
   isValid(){
-    console.log(this.customerDetails);
     if(!this.customerDetails.name.trim()){
       this.toastr.warning('Name is required.');
       return false;

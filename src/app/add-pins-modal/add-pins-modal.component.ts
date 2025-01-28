@@ -43,7 +43,7 @@ export class AddPinsModalComponent implements OnInit {
       autoUpload: false, 
       allowedFileType: ['image'], 
       allowedMimeType: ['image/jpeg', 'image/png', 'image/gif'],
-      maxFileSize: 5 * 1024 * 1024, // E
+      maxFileSize: 5 * 1024 * 1024
      
     });
     // Add event listener for file addition
@@ -74,16 +74,6 @@ export class AddPinsModalComponent implements OnInit {
     };
     reader.readAsDataURL(file); 
   }
-  // Handle drag-and-drop hover state
-  onFileOver(e: boolean): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  onFileSelected(event: any) {
-    const files: File[] = event.target.files; // Access the files from the file input
-    console.log(files)
-  }
-
   isValid(){
     if(!this.pinDetails.title.trim()){
       this.toastr.warning('Title is required.');
@@ -123,8 +113,6 @@ export class AddPinsModalComponent implements OnInit {
     const customers = window.localStorage.getItem('customers');
     this.collaboratorsData = customers ? JSON.parse(customers) : [];
     this.collaborators = Array.from(new Set(this.collaboratorsData.map(item => item.name)));
-
-    console.log(this.collaborators)
   }
 
 }

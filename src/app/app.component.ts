@@ -24,7 +24,6 @@ export class AppComponent {
   pinsData: pin[] = []
 
   handlePinData(pin: pin) {
-    console.log('Data received from modal:', pin);
     this.pinsData.push(pin);
   }
 }
