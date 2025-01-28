@@ -1,15 +1,77 @@
 <div class="modal fade" id="{{modalId}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Pin</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="modal-body" style="margin: auto;">
+            <div class="add-pin-ctn">
+                <div class="input-group mb-3" style="align-items: center;">
+                    <span class="input-label" >Title*: </span>
+                    <input type="text" class="form-control" aria-label="title" [(ngModel)]="pinDetails.title" >
+                </div>
+                <div class="input-group mb-3" style="align-items: center;">
+                    <span class="input-label" >Select Image*: </span>
+                    <div *ngIf="!imageUploaded"
+                        ng2FileDrop
+                        [uploader]="uploader"
+                        [ngClass]="{ 'file-over': hasBaseDropZoneOver }"
+                        class="upload-container"
+                        style="width:340px;border-radius: 0;"
+                        >
+                        <p><label for="fileInput">Choose</label> & Drag and Drop files here</p>
+
+                        <!-- File Input (hidden but clickable) -->
+                        <input
+                            id="fileInput"
+                            type="file"
+                            title=""
+                            ng2FileSelect
+                            [uploader]="uploader"
+                            multiple
+                            class="hidden-file-input"
+                        />
+                    </div>
+                    <div *ngIf="imageUploaded" class="image-container" style="width:340px;border-radius: 0;">
+                        <img class="selected-image" src="{{pinDetails.image}}" alt="">
+                        <div class="remove-btn" (click)="removeImage()">X</div>
+                    </div>
+                </div>
+                <div class="input-group mb-3 single-select" style="align-items: center;">
+                    <span class="input-label">Select Collaboratory*: </span>
+                    <ngx-select 
+                      [items]="collaborators" [multiple]="true"
+                      [(ngModel)]="pinDetails.collaboratory" 
+                      style="width: 340px; border: 1px solid #c4c4c4; border-radius: 0;">
+                    </ngx-select>
+                </div>
+                <div class="input-group mb-3" style="align-items: center;">
+                    <span class="input-label">Privacy*: </span>
+                    <div style="display: flex; gap: 5px; align-items: center;">
+                        <input 
+                          type="radio" 
+                          name="Private" 
+                          [(ngModel)]="pinDetails.privacy" 
+                          value="Private"
+                        /> 
+                        <label for="Private">Private</label>
+                     
+                        <input 
+                          type="radio" 
+                          name="Public" 
+                          [(ngModel)]="pinDetails.privacy" 
+                          value="Public"
+                          style="margin-left: 20px;"
+                        /> 
+                        <label for="Public">Public</label>
+                    </div>
+                  </div>
+                  
+            </div>
         </div>
         <div class="modal-footer" style="justify-content: center;">
-            <button type="button" class="btn btn-light create-pin-btn">Create Pin</button>
+            <button type="button" class="btn btn-light create-pin-btn" (click)="savePin()" data-bs-dismiss="modal">Create Pin</button>
         </div>
       </div>
     </div>

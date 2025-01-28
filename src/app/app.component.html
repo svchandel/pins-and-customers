@@ -17,16 +17,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pin of pinsData">
-          <td scope="row">{{pin.title}}</td>
-          <td>{{pin.image}}</td>
-          <td>
-            <ul *ngFor="let collaborator of pin.collaboratory">
-              <li>{{collaborator}}</li>
-            </ul>
+        <tr *ngIf="!pinsData.length">
+          <td colspan="10" style="text-align: center; padding: 11% !important;">
+            No Data available
           </td>
-          <td>{{pin.privacy}}</td>
         </tr>
+        <ng-container *ngIf="pinsData.length>0">
+          <tr  *ngFor="let pin of pinsData">
+            <td scope="row">{{pin.title}}</td>
+            <td><img class="pins-table-img" src="{{pin.image}}" alt=""></td>
+            <td>
+              <ul >
+                <li *ngFor="let collaborator of pin.collaboratory">{{collaborator}}</li>
+              </ul>
+            </td>
+            <td>{{pin.privacy}}</td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

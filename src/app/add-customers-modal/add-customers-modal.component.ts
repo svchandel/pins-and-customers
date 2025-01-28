@@ -98,7 +98,7 @@ export class AddCustomersModalComponent implements OnInit {
     return true;
   }
 
-  storeCustomerData() {
+  saveCustomerInfo() {
     if(this.isValid()){
       const customers = window.localStorage.getItem('customers');
       const currentCustomers = customers ? JSON.parse(customers) : [];
