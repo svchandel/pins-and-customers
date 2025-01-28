@@ -1,16 +1,32 @@
 <div class="modal fade" id="{{modalId}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog ">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Customer</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="modal-body" style="margin: auto;">
+          <div class="add-customer-ctn">
+            <div class="input-group mb-3" style="align-items: center;">
+                <span class="input-label" >Title*: </span>
+                <input type="text" class="form-control" aria-label="title" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3" style="align-items: center;">
+                <span class="input-label" >Email*: </span>
+                <input type="text" class="form-control" aria-label="title" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3 single-select" style="align-items: center;">
+                <span class="input-label" >Region*: </span>
+                <ngx-select [items]="regions" [(ngModel)]="selectedRegion" style="width: 500px;border: 1px solid #c4c4c4;border-radius: 0;"></ngx-select>
+            </div>
+            <div class="input-group mb-3 single-select" style="align-items: center;">
+                <span class="input-label" >Country*: </span>
+                <ngx-select [items]="regions" [(ngModel)]="selectedCountry" style="width: 500px;border: 1px solid #c4c4c4;border-radius: 0;"></ngx-select>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
+        <div class="modal-footer" style="justify-content: center;">
+            <button type="button" class="btn btn-light create-customer-btn" (click)="storeCustomerData()">Create Customer</button>
         </div>
       </div>
     </div>

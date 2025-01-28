@@ -28,5 +28,10 @@ export class AppComponent {
       collaboratory: ['Customer 1', 'Customer 2'],
       privacy: 'Public'
     }
-]
+  ]
+
+  handlePinData(pin: pin) {
+    console.log('Data received from modal:', pin);
+    // Use the data as needed
+  }
 }
